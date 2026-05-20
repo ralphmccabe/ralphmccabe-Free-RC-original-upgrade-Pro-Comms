@@ -1,10 +1,10 @@
-/* TRC-PRO-VERSION - v2.3-PROD */
-const CACHE_NAME = 'trc-pro-upgrade-v2.4';
+/* TRC-PRO-VERSION - v2.5-PROD */
+const CACHE_NAME = 'trc-pro-upgrade-v2.5';
 const ASSETS = [
     './',
-    './index.html?v=6.0',
-    './style.css?v=1.6',
-    './original_script.js?v=6.0',
+    './index.html?v=6.1',
+    './style.css?v=1.7',
+    './original_script.js?v=6.1',
     './manifest.json',
     './icon-512.png',
     './icon-192.png',
@@ -24,7 +24,12 @@ self.addEventListener('install', event => {
             return cache.addAll(ASSETS);
         })
     );
-    self.skipWaiting();
+});
+
+self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
 });
 
 self.addEventListener('activate', event => {
